@@ -14,7 +14,6 @@
      * 加载js--本地或在线CDN地址-https://www.bootcdn.cn/tinymce/
      */
     import load from './dynamicLoadScript'
-    import {uploadCourseToQiNiuYun} from "@/api/upload-file";
     import {printLog} from "@/utils/log-util";
     import PreviewDialog from "@/components/tinymce/preview-dialog";
 
@@ -75,6 +74,23 @@
             printTitle: {
                 type: String,
                 default: '',
+            },
+            /**
+             * 图片上传回调
+             * function (blobInfo, success, failure) {
+                        let file = blobInfo.blob();
+                        // 上传图片接口，跟后端同事协调上传图片
+                        // http://hh.xxxx.cn/admin/upload为上传图片接口
+                        uploadCourseToQiNiuYun(file)
+                            .then((result) => {
+                                success(result.fileUrl)
+                            }).catch((e) => {
+                            failure(e)
+                        })
+                    },
+             */
+            imagesUploadHandler: {
+                type: Function,
             },
         },
         data() {
@@ -221,17 +237,7 @@
                         })
                     },
                     // 图片上传三个参数，图片数据，成功时的回调函数，失败时的回调函数
-                    images_upload_handler: function (blobInfo, success, failure) {
-                        let file = blobInfo.blob();
-                        // 上传图片接口，跟后端同事协调上传图片
-                        // http://hh.xxxx.cn/admin/upload为上传图片接口
-                        uploadCourseToQiNiuYun(file)
-                            .then((result) => {
-                                success(result.fileUrl)
-                            }).catch((e) => {
-                            failure(e)
-                        })
-                    },
+                    images_upload_handler: this.imagesUploadHandler,
                 },)
             },
             destroyTinymce() {

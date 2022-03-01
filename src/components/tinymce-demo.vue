@@ -1,18 +1,21 @@
 <template>
-   <div>
-       <tinymce v-model="content" :height="500"/>
-   </div>
+    <div>
+        <tinymce v-model="content"
+                 :height="500"
+                 :images-upload-handler="imagesUploadHandler"/>
+    </div>
 </template>
 
 <script>
     import Tinymce from "@/components/tinymce/index";
+    import {uploadCourseToQiNiuYun} from "@/api/upload-file";
 
     export default {
         name: "TinymceDemo",
         components: {Tinymce},
         data() {
             return {
-                content:"",
+                content: "",
                 content1: '<h1 style="text-align: center;">长恨歌</h1>' +
                     '<p style="text-align: center;">汉皇重色思倾国，御宇多年求不得。' +
                     '<br />杨家有女初长成，养在深闺人未识。' +
@@ -31,7 +34,26 @@
                     '<br />缓歌慢舞凝丝竹，尽日君王看不足。' +
                     '<br />渔阳鼙鼓动地来，惊破霓裳羽衣曲。',
             };
-        }
+        },
+        methods: {
+            /**
+             * 图片上传
+             * @param blobInfo
+             * @param success
+             * @param failure
+             */
+            imagesUploadHandler(blobInfo, success, failure) {
+                let file = blobInfo.blob();
+                // 上传图片接口，跟后端同事协调上传图片
+                // http://hh.xxxx.cn/admin/upload为上传图片接口
+                uploadCourseToQiNiuYun(file)
+                    .then((result) => {
+                        success(result.fileUrl)
+                    }).catch((e) => {
+                    failure(e)
+                })
+            },
+        },
     }
 </script>
 
