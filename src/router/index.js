@@ -19,6 +19,14 @@ export const constantRoutes = [
         component: () => import("@/components/tinymce-demo"),
         children: [],
     },
+    {
+        path: path.WANG_EDITOR_INDEX,
+        meta: {
+            title: 'WangEditor示例'
+        },
+        component: () => import("@/components/wang-editor-demo"),
+        children: [],
+    },
 ]
 
 

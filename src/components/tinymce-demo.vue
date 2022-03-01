@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div style="margin: 20px;text-align: start">
+            <el-button type="text" @click="wangEditorDemo">WangEditorDemo</el-button>
+        </div>
         <tinymce v-model="content"
                  :height="500"
                  :images-upload-handler="imagesUploadHandler"/>
@@ -9,6 +12,7 @@
 <script>
     import Tinymce from "@/components/tinymce/index";
     import {uploadCourseToQiNiuYun} from "@/api/upload-file";
+    import path from "@/router/path";
 
     export default {
         name: "TinymceDemo",
@@ -53,6 +57,9 @@
                     failure(e)
                 })
             },
+            wangEditorDemo() {
+                this.$router.replace(path.WANG_EDITOR_INDEX)
+            }
         },
     }
 </script>

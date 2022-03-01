@@ -190,7 +190,7 @@
                     ///版权信息--powered by Tinymec
                     branding: false,
                     plugins: 'quickbars print formatpainter searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount imagetools textpattern help emoticons autosave kityformula-editor importword indent2em autoresize formatpainter axupimgs',
-                    toolbar: this.toolbar.length > 0 ? this.toolbar : 'undo redo fullscreen | formatselect fontselect fontsizeselect lineheight removeformat | forecolor backcolor bold italic underline strikethrough |alignleft aligncenter alignright alignjustify outdent indent | bullist numlist | table image media charmap emoticons hr pagebreak print expertPdf',
+                    toolbar: this.toolbar.length > 0 ? this.toolbar : 'undo redo fullscreen | formatselect fontselect fontsizeselect lineheight removeformat | forecolor backcolor bold italic underline strikethrough |alignleft aligncenter alignright alignjustify outdent indent | bullist numlist | table image charmap emoticons hr pagebreak print expertPdf',
                     //选中时出现的快捷工具，与插件有依赖关系
                     quickbars_selection_toolbar: "removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
                     content_style: "img {max-width:100%;}",
